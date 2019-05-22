@@ -1,0 +1,40 @@
+Program class flow:
+
+Main ---> ConsoleBasedUI ---> TicketManager ---> MySqlHandler
+(start)   (meniuri/scanner)   (business logic)  (db connector)
+                              implements Ticketing
+							             extends LoginCapable
+
+Ticketing interface methods:
+    Ticket createTicket();
+    boolean assignTo(Ticket t, String username);
+    boolean statusUpdate(Ticket t);
+    List<Ticket> getAllByAuthor(String username);
+    List<Ticket> getAllByResponsible(String username);
+
+Field-uri in ConsoleBasedUI:
+    - Scanner instance
+    - TicketManager instance
+    - prompt
+
+Field-uri in TicketManager:
+- MyS   qlHandler instance
+
+TicketingAPP:
+    - register+login
+    - meniu principal dupa login:
+        - creare ticket nou (vezi descrierea tabelei Ticket)
+        - acceseaza ticket (va deschide un meniu dedicat, detaliat mai jos)
+        - afisare tickete asignate unui user dat
+        - afisare tickete cu un anumit status
+    - meniul care se afiseaza dupa ce s-a accecsat un ticket:
+        - asignarea unui responsabil de rezolvare
+        - schimbare status
+
+User           Ticket
+user_id        ticket_id
+username       title
+password       description
+email          author_id
+first_name     responsabil_id
+last_name      status
